@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container-body">
+        <nav class="nav-container">
+            <header class="header">
+                <div class="logo">
+                    <img src=".\img\Group 2.png" alt="" srcset="">
+                    <div class="search">
+                        <i class="fa fa-search fa-2x"></i>
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <div class="menu"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
+                    <div class="profile"><i class="fa fa-user fa-2x" aria-hidden="true"></i></div>
+                    <div class="basket"><i class='fa fa-shopping-cart fa-2x'></i></div>
+                </div>
+
+            </header>
+        </nav>
+        <div class="main-container">
+            <main class="main">
+                <div class="main-block1">
+                    <img src=".\img\imgMain.png" alt="" srcset="">
+                </div>
+                <div class="main-block2">
+                    <div class="red-line"></div>
+                    <div class="brand">
+                        <h1 class="main-h1">THE BRAND</h1>
+                        <h3 class="main-h3">OF LUXERIOUS <span class="font-color">FASHION</span></h3>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div class="section-container">
+            <section class="category">
+                <div class="category-top">
+                    <div class="item1">
+                        <img src=".\img\1-for women.png" alt="" srcset="">
+                    </div>
+                    <div class="item2">
+                        <img src=".\img\2-for men.jpg" alt="" srcset="">
+                    </div>
+                    <div class="item3">
+                        <img src="img\3-for kids.png" alt="" srcset="">
+                    </div>
+                </div>
+                <div class="category-bottom">
+                    <img src="img\4-ACCESORIES.png" alt="" srcset="">
+                </div>
+            </section>
+            <section class="fetured-items"></section>
+        </div>
+        <div class="section-container">
+            <section class="action"></section>
+            <section class="cart-items">
+                <!-- <div class='title-cart-items'>
+                    <h3 class='title-cart'>Cart Items</h3>
+                </div> -->
+            </section>
+            <section class="subscribe"></section>
+            <footer class="footer"></footer>
+
+
+
+        </div>
+    </div>
+
+
+    <script src="data.js"></script>
+    <script>
+        const data = JSON.parse(dataProducts);
+
+        const feturedItemsEls = document.querySelector('.fetured-items');
+
+        const cartItemsEls = document.querySelector('.cart-items');
+
+        const titleCartNameEl = document.createElement('div');
+        titleCartNameEl.classList.add('items-name');
+        cartItemsEls.appendChild(titleCartNameEl);
+
+        const cartsNameEl = document.createElement('h3');
+        cartsNameEl.classList.add('carts-name');
+        cartsNameEl.textContent = 'Carts Items';
+        titleCartNameEl.appendChild(cartsNameEl);
+
+
+        data.forEach(element => {
+
+
+            const cardProductEl = document.createElement('button');
+            cardProductEl.classList.add('card-product');
+            feturedItemsEls.appendChild(cardProductEl);
+            cardProductEl.addEventListener('click', function (e) {
+
+            });
+
+            const cardImgEl = document.createElement('img');
+            cardImgEl.classList.add('image');
+            cardImgEl.src = element.image;
+            cardProductEl.appendChild(cardImgEl);
+
+
+            const cardContentEl = document.createElement('div');
+            cardContentEl.classList.add('card-content');
+            cardProductEl.appendChild(cardContentEl);
+
+            const nameEl = document.createElement('p');
+            nameEl.classList.add('name');
+            nameEl.textContent = element.name;
+            cardContentEl.appendChild(nameEl);
+
+            const cardDescriptionEl = document.createElement('p');
+            cardDescriptionEl.classList.add('description');
+            cardDescriptionEl.textContent = element.description;
+            cardContentEl.appendChild(cardDescriptionEl);
+
+            const priceAddEl = document.createElement('div');
+            priceAddEl.classList.add('price-add');
+            cardContentEl.appendChild(priceAddEl);
+
+
+            const priceProductEl = document.createElement('p');
+            priceProductEl.classList.add('price');
+            priceProductEl.textContent = element.price;
+            priceAddEl.appendChild(priceProductEl);
+
+
+
+            const buttonAddToCartEl = document.createElement('button');
+            buttonAddToCartEl.classList.add('btn-add-to-cart');
+            buttonAddToCartEl.textContent = 'Add to Cart';
+            priceAddEl.appendChild(buttonAddToCartEl);
+
+
+            buttonAddToCartEl.addEventListener('click', function (e) {
+                const blockAddsEls = document.createElement('div');
+                blockAddsEls.classList.add('container-adds-elements');
+                cartItemsEls.appendChild(blockAddsEls);
+
+                const blockEl = document.createElement('div');
+                blockEl.classList.add('product-block');
+                cartItemsEls.appendChild(blockEl);
+
+                const cartImgEl = document.createElement('div');
+                blockEl.appendChild(cartImgEl);
+
+                const containerImgEl = document.createElement('img');
+                containerImgEl.classList.add('image');
+                containerImgEl.src = element.image;
+                containerImgEl.classList.add('image-cart');
+                cartImgEl.appendChild(containerImgEl);
+
+                const containerContentEl = document.createElement('div');
+                containerContentEl.classList.add('container-content');
+                containerContentEl.classList.add('name-cart');
+                blockEl.appendChild(containerContentEl);
+
+                const titleEl = document.createElement('div');
+                titleEl.classList.add('title-name-cart');
+                titleEl.textContent = element.name;
+                containerContentEl.appendChild(titleEl);
+
+                const deleteEl = document.createElement('img');
+                deleteEl.classList.add('cart-delete');
+                deleteEl.src = './img/close.png';
+                titleEl.appendChild(deleteEl);
+
+
+
+                const specificationsEl = document.createElement('specifications');
+                specificationsEl.classList.add('specification-name-cart');
+                containerContentEl.appendChild(specificationsEl);
+
+                const priceEl = document.createElement('h3');
+                priceEl.classList.add('price');
+                priceEl.textContent = `Price ${element.price}`;
+                specificationsEl.appendChild(priceEl);
+
+                const currencyEl = document.createElement('h3');
+                currencyEl.classList.add('currency');
+                currencyEl.textContent = `Currency ${element.currency}`;
+                specificationsEl.appendChild(currencyEl);
+
+                const colorEl = document.createElement('h3');
+                colorEl.classList.add('color');
+                colorEl.textContent = `Color ${element.color}`;
+                specificationsEl.appendChild(colorEl);
+
+                const quantityEl = document.createElement('div');
+                quantityEl.classList.add('quantity');
+                quantityEl.textContent = `Quantity ${element.quantity}`
+                specificationsEl.appendChild(quantityEl);
+
+                let allItemsEls = document.querySelectorAll('.product-block');
+                console.log(allItemsEls);
+                let lengthArr = allItemsEls.length;
+                console.log(lengthArr);
+
+                deleteEl.addEventListener('click', function (e) {
+                    blockEl.remove();
+                    lengthArr = lengthArr - 1;
+                    console.log(lengthArr);
+
+                });
+
+
+
+
+
+            });
+        });
+
+
+        const containerMoreBtnEl = document.createElement('div');
+        containerMoreBtnEl.classList.add('cont-btn');
+        feturedItemsEls.appendChild(containerMoreBtnEl);
+
+        const moreButtonEl = document.createElement('btn');
+        moreButtonEl.classList.add('more-btn');
+        containerMoreBtnEl.appendChild(moreButtonEl);
+
+        const textMoreBtnEl = document.createElement('h4');
+        textMoreBtnEl.classList.add('text-more-btn');
+        textMoreBtnEl.textContent = 'Browse All Product'
+        moreButtonEl.appendChild(textMoreBtnEl);
+    </script>
+
+</body>
+
+</html>
